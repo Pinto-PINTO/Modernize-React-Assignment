@@ -6,7 +6,7 @@ import { IconArrowUpLeft } from '@tabler/icons';
 
 import DashboardCard from '../../../components/shared/DashboardCard';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { auth } from '../../../firebase/Firebase'; // Import the initialized auth object
+import { auth } from '../../../firebase/Firebase'; 
 
 const YearlyBreakup = () => {
   const theme = useTheme();
@@ -14,29 +14,35 @@ const YearlyBreakup = () => {
   const primarylight = '#ecf2ff';
   const successlight = theme.palette.success.light;
 
-  const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState({ username: "", email: "" });
 
   useEffect(() => {
-    const fetchUsername = async () => {
-      try {
-        const db = getFirestore();
-        const userId = auth.currentUser.uid; // Access currentUser from the initialized auth object
-        const userDoc = await getDoc(doc(db, 'users', userId));
-        if (userDoc.exists()) {
-          setUsername(userDoc.data().username);
-        } else {
-          console.log("User document not found");
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const db = getFirestore();
+          const userId = user.uid;
+          const userDoc = await getDoc(doc(db, 'users', userId));
+          if (userDoc.exists()) {
+            setUserData({
+              username: userDoc.data().username,
+              email: user.email, // Fetch and store the user's email
+            });
+          } else {
+            console.log("User document not found");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
+      } else {
+        console.log("User not authenticated");
       }
-    };
+    });
 
-    fetchUsername();
+    return unsubscribe; 
   }, []);
 
   const optionscolumnchart = {
-    // Your chart options
   };
 
   const seriescolumnchart = [38, 40, 25];
@@ -47,17 +53,14 @@ const YearlyBreakup = () => {
         {/* column */}
         <Grid item xs={7} sm={7}>
           <Typography variant="h3" fontWeight="700">
-            Username: {username}
+            @{userData.username}
           </Typography>
           <Stack direction="row" spacing={1} mt={1} alignItems="center">
             <Avatar sx={{ bgcolor: successlight, width: 27, height: 27 }}>
               <IconArrowUpLeft width={20} color="#39B69A" />
             </Avatar>
             <Typography variant="subtitle2" fontWeight="600">
-              +9%
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-              last year
+              {userData.email}
             </Typography>
           </Stack>
           <Stack spacing={3} mt={5} direction="row">
@@ -86,4 +89,3 @@ const YearlyBreakup = () => {
 };
 
 export default YearlyBreakup;
-
