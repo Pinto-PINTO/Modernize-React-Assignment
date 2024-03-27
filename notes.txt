@@ -1,0 +1,14 @@
+1) Signup page
+2) Dashboard 
+  - Show current user information in a container (Yearly Breakup)
+  - Displays all available users in a table (Product Performance)
+  - Get data from 3 APIs and desplay in the Dashboard
+  - Add any 2 custom tools eg: Calander and Calculator
+  - Have 3 subpages in the side bar 
+
+
+Activate your lawn sprinker without the rain detector. ()
+
+Facebook Market place 
+
+Snow Mobile (Gas Station), Which gear to use, Check the weather 
