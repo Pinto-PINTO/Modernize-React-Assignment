@@ -24,19 +24,19 @@ const Menuitems = [
     id: uniqueId(),
     title: 'USA Population',
     icon: IconTypography,
-    href: '/ui/typography',
+    href: '/usa-population',
   },
   {
     id: uniqueId(),
     title: 'Fake Store',
     icon: IconAperture,
-    href: '/ui/shadow',
+    href: '/fake-store',
   },
   {
     id: uniqueId(),
     title: 'Regions',
     icon: IconCopy,
-    href: '/sample-page',
+    href: '/regions',
   },
   {
     navlabel: true,

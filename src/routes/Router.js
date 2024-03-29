@@ -1,6 +1,9 @@
 import React, { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/full/shared/loadable/Loadable';
+import USAPopulation from 'src/views/dashboard/components/USAPopulation';
+import FakeStore from 'src/views/dashboard/components/FakeStore';
+import Regions from 'src/views/dashboard/components/Regions';
 
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
@@ -28,6 +31,9 @@ const Router = [
       { path: '/ui/typography', exact: true, element: <TypographyPage /> },
       { path: '/ui/shadow', exact: true, element: <Shadow /> },
       { path: '*', element: <Navigate to="/auth/404" /> },
+      { path: '/usa-population', exact: true, element: <USAPopulation /> },
+      { path: '/fake-store', exact: true, element: <FakeStore /> },
+      { path: '/regions', exact: true, element: <Regions /> },
     ],
   },
   {
