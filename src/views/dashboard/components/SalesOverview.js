@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Select, MenuItem } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import DashboardCard from '../../../components/shared/DashboardCard';
 import Chart from 'react-apexcharts';
 
-
-const SalesOverview = () => {
-
-    // select
-    const [month, setMonth] = React.useState('1');
-
-    const handleChange = (event) => {
-        setMonth(event.target.value);
-    };
-
-    // chart color
+const PopulationChart = () => {
+    const [populationData, setPopulationData] = useState([]);
     const theme = useTheme();
     const primary = theme.palette.primary.main;
     const secondary = theme.palette.secondary.main;
 
-    // chart
-    const optionscolumnchart = {
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`https://datausa.io/api/data?drilldowns=Nation&measures=Population`);
+            const data = await response.json();
+            setPopulationData(data.data);
+        };
+
+        fetchData();
+    }, []);
+
+    const options = {
         chart: {
             type: 'bar',
             fontFamily: "'Plus Jakarta Sans', sans-serif;",
@@ -41,13 +41,12 @@ const SalesOverview = () => {
                 borderRadiusWhenStacked: 'all',
             },
         },
-
         stroke: {
             show: true,
             width: 5,
             lineCap: "butt",
             colors: ["transparent"],
-          },
+        },
         dataLabels: {
             enabled: false,
         },
@@ -64,10 +63,12 @@ const SalesOverview = () => {
             },
         },
         yaxis: {
+            min: 300000000,
+            max: 350000000,
             tickAmount: 4,
         },
         xaxis: {
-            categories: ['16/08', '17/08', '18/08', '19/08', '20/08', '21/08', '22/08', '23/08'],
+            categories: populationData.map(entry => entry.Year),
             axisBorder: {
                 show: false,
             },
@@ -77,33 +78,19 @@ const SalesOverview = () => {
             fillSeriesColor: false,
         },
     };
-    const seriescolumnchart = [
+
+    const series = [
         {
-            name: 'Eanings this month',
-            data: [355, 390, 300, 350, 390, 180, 355, 390],
-        },
-        {
-            name: 'Expense this month',
-            data: [280, 250, 325, 215, 250, 310, 280, 250],
-        },
+            name: 'Population',
+            data: populationData.map(entry => entry.Population),
+        }
     ];
 
     return (
-
-        <DashboardCard title="Sales Overview" action={
-            <Select
-                labelId="month-dd"
-                id="month-dd"
-                value={month}
-                size="small"
-                onChange={handleChange}
-            >
-                <MenuItem value={1}>2024</MenuItem>
-            </Select>
-        }>
+        <DashboardCard title="Population of USA">
             <Chart
-                options={optionscolumnchart}
-                series={seriescolumnchart}
+                options={options}
+                series={series}
                 type="bar"
                 height="370px"
             />
@@ -111,4 +98,4 @@ const SalesOverview = () => {
     );
 };
 
-export default SalesOverview;
+export default PopulationChart;

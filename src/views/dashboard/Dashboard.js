@@ -7,7 +7,6 @@ import SalesOverview from './components/SalesOverview';
 import YearlyBreakup from './components/YearlyBreakup';
 import RecentTransactions from './components/RecentTransactions';
 import ProductPerformance from './components/ProductPerformance';
-import Blog from './components/Blog';
 import MonthlyEarnings from './components/MonthlyEarnings';
 import CheckboxWidget from './components/CheckboxWidget';
 import MusicWidget from './components/MusicWidget';
@@ -43,10 +42,6 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} lg={6}>
             <MusicWidget />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Blog />
           </Grid>
         </Grid>
       </Box>
