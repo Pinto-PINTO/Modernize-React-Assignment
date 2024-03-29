@@ -15,8 +15,8 @@ Snow Mobile (Gas Station), Which gear to use, Check the weather
 
 
 1) API 1 (USA Population) -  https://datausa.io/about/api/
-2) 
-
+2) API 2 (Fake Store Data) - https://fakestoreapi.com/products/
+3) API 3 (Regions and ISO Codes) - https://api.worldbank.org/v2/country/Z7?format=json
 
 Important Gov Dataset - https://catalog.data.gov/dataset?q=&sort=metadata_created+desc
 
