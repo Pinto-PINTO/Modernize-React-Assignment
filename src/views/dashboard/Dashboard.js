@@ -9,6 +9,8 @@ import RecentTransactions from './components/RecentTransactions';
 import ProductPerformance from './components/ProductPerformance';
 import Blog from './components/Blog';
 import MonthlyEarnings from './components/MonthlyEarnings';
+import CheckboxWidget from './components/CheckboxWidget';
+import CalculatorWidget from './components/CalculatorWidget';
 
 
 const Dashboard = () => {
@@ -35,6 +37,14 @@ const Dashboard = () => {
           <Grid item xs={12} lg={8}>
             <ProductPerformance />
           </Grid>
+
+          <Grid item xs={12} lg={6}>
+            <CheckboxWidget />
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <CalculatorWidget />
+          </Grid>
+
           <Grid item xs={12}>
             <Blog />
           </Grid>
