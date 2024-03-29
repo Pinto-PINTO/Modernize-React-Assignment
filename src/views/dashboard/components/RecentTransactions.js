@@ -8,6 +8,7 @@ import {
   TimelineDot,
   TimelineConnector,
   TimelineContent,
+  timelineOppositeContentClasses,
 } from '@mui/lab';
 import { Link, Typography } from '@mui/material';
 
@@ -41,16 +42,23 @@ const RecentTransactions = () => {
   return (
     <DashboardCard title="Regions and ISO Codes">
       <Timeline
-        className="theme-timeline"
-        sx={{
-          p: 0,
-          mb: '-40px',
-          '& .MuiTimelineConnector-root': {
-            width: '1px',
-            backgroundColor: '#efefef'
-          },
-          textAlign: 'left' // Added to align content to the left
-        }}>
+          className="theme-timeline"
+          nonce={undefined}
+          onResize={undefined}
+          onResizeCapture={undefined}
+          sx={{
+            p: 0,
+            mb: '-40px',
+            '& .MuiTimelineConnector-root': {
+              width: '1px',
+              backgroundColor: '#efefef'
+            },
+            [`& .${timelineOppositeContentClasses.root}`]: {
+              flex: 0,
+              paddingLeft: 0,
+            },
+          }}
+        >
         {countryData.map((country, index) => {
           const iso2Code = country[1]?.[0]?.iso2Code;
           const name = country[1]?.[0]?.name;
