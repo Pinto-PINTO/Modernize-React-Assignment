@@ -25,10 +25,10 @@ const Dashboard = () => {
               <Grid item xs={12}>
                 <YearlyBreakup />
               </Grid>
-              <Grid item xs={12}>
-                <MonthlyEarnings />
-              </Grid>
             </Grid>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <MonthlyEarnings />
           </Grid>
           <Grid item xs={12} lg={4}>
             <RecentTransactions />

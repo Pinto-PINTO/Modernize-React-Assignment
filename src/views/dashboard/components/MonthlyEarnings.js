@@ -1,81 +1,98 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
-import { Stack, Typography, Avatar, Fab } from '@mui/material';
+import { Fab, Typography, Stack, Avatar } from '@mui/material';
 import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons';
 import DashboardCard from '../../../components/shared/DashboardCard';
 
 const MonthlyEarnings = () => {
-  // chart color
   const theme = useTheme();
+  const [productRatings, setProductRatings] = useState([]);
   const secondary = theme.palette.secondary.main;
   const secondarylight = '#f5fcff';
   const errorlight = '#fdede8';
 
-  // chart
+  useEffect(() => {
+    const fetchRatings = async () => {
+      try {
+        const response = await fetch('https://fakestoreapi.com/products/');
+        const products = await response.json();
+        const ratings = products.map(product => product.rating.rate);
+        setProductRatings(ratings);
+      } catch (error) {
+        console.error('Error fetching ratings:', error);
+      }
+    };
+
+    fetchRatings();
+  }, []);
+
   const optionscolumnchart = {
     chart: {
-      type: 'area',
+      type: 'bar',
       fontFamily: "'Plus Jakarta Sans', sans-serif;",
       foreColor: '#adb0bb',
       toolbar: {
         show: false,
       },
-      height: 60,
-      sparkline: {
-        enabled: true,
-      },
-      group: 'sparklines',
+      height: 350,
     },
-    stroke: {
-      curve: 'smooth',
-      width: 2,
+    plotOptions: {
+      bar: {
+        horizontal: false,
+      },
+    },
+    xaxis: {
+      categories: productRatings.map((_, index) => `Product ${index + 1}`),
+      labels: {
+        style: {
+          colors: [secondary],
+        },
+      },
     },
     fill: {
       colors: [secondarylight],
       type: 'solid',
-      opacity: 0.05,
+      opacity: 0.5,
     },
-    markers: {
-      size: 0,
+    dataLabels: {
+      enabled: false,
     },
     tooltip: {
       theme: theme.palette.mode === 'dark' ? 'dark' : 'light',
     },
   };
+
   const seriescolumnchart = [
     {
-      name: '',
+      name: 'Ratings',
       color: secondary,
-      data: [25, 66, 20, 40, 12, 58, 20],
+      data: productRatings,
     },
   ];
 
   return (
     <DashboardCard
-      title="NYC"
+      title="Fake Store"
       action={
-        <Fab color="secondary" size="medium" sx={{color: '#ffffff'}}>
+        <Fab color="secondary" size="medium" sx={{ color: '#ffffff' }}>
           <IconCurrencyDollar width={24} />
         </Fab>
       }
       footer={
-        <Chart options={optionscolumnchart} series={seriescolumnchart} type="area" height="60px" />
+        <Chart options={optionscolumnchart} series={seriescolumnchart} type="bar" height="350px" />
       }
     >
       <>
-        <Typography variant="h3" fontWeight="700" mt="-20px">
-          $6,820
-        </Typography>
         <Stack direction="row" spacing={1} my={1} alignItems="center">
           <Avatar sx={{ bgcolor: errorlight, width: 27, height: 27 }}>
             <IconArrowDownRight width={20} color="#FA896B" />
           </Avatar>
           <Typography variant="subtitle2" fontWeight="600">
-            +9%
+            Data of All Products In The E-Commerce Store
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            last year
+            2024
           </Typography>
         </Stack>
       </>
