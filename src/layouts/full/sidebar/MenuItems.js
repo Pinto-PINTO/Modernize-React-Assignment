@@ -18,19 +18,25 @@ const Menuitems = [
   },
   {
     navlabel: true,
-    subheader: 'Utilities',
+    subheader: 'Sub Pages',
   },
   {
     id: uniqueId(),
-    title: 'Typography',
+    title: 'USA Population',
     icon: IconTypography,
     href: '/ui/typography',
   },
   {
     id: uniqueId(),
-    title: 'Shadow',
-    icon: IconCopy,
+    title: 'Fake Store',
+    icon: IconAperture,
     href: '/ui/shadow',
+  },
+  {
+    id: uniqueId(),
+    title: 'Regions',
+    icon: IconCopy,
+    href: '/sample-page',
   },
   {
     navlabel: true,
