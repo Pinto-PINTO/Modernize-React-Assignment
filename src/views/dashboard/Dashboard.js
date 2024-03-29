@@ -10,7 +10,7 @@ import ProductPerformance from './components/ProductPerformance';
 import Blog from './components/Blog';
 import MonthlyEarnings from './components/MonthlyEarnings';
 import CheckboxWidget from './components/CheckboxWidget';
-import CalculatorWidget from './components/CalculatorWidget';
+import MusicWidget from './components/MusicWidget';
 
 
 const Dashboard = () => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
             <CheckboxWidget />
           </Grid>
           <Grid item xs={12} lg={6}>
-            <CalculatorWidget />
+            <MusicWidget />
           </Grid>
 
           <Grid item xs={12}>

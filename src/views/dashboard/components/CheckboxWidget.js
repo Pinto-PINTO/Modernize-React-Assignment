@@ -9,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 
-const CheckboxWidget = () => {
+const MusicWidget = () => {
   const theme = useTheme();
   const secondary = theme.palette.secondary.main;
 
@@ -30,7 +30,7 @@ const CheckboxWidget = () => {
 
   return (
     <DashboardCard
-      title="Checklist"
+      title="CheckBox"
       action={
         <Fab color="secondary" size="medium" sx={{ color: '#ffffff' }}>
             #
@@ -43,7 +43,8 @@ const CheckboxWidget = () => {
             "Run the AWS Server",
             "Pay fees for Domain and Hosting",
             "Clear Server Cache and Backup",
-            "Monetize the Application"
+            "Monetize the Application",
+            "SEO on Platforms"
           ].map((item, index) => {
             const labelId = `checkbox-list-secondary-label-${index}`;
             return (
@@ -73,4 +74,4 @@ const CheckboxWidget = () => {
   );
 };
 
-export default CheckboxWidget;
+export default MusicWidget;
