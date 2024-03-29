@@ -12,3 +12,12 @@ Activate your lawn sprinker without the rain detector. ()
 Facebook Market place 
 
 Snow Mobile (Gas Station), Which gear to use, Check the weather 
+
+
+1) API 1 (USA Population) -  https://datausa.io/about/api/
+2) 
+
+
+Important Gov Dataset - https://catalog.data.gov/dataset?q=&sort=metadata_created+desc
+
+This has APIs: https://free-apis.github.io/#/browse
