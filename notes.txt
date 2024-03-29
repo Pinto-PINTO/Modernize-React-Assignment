@@ -21,3 +21,9 @@ Snow Mobile (Gas Station), Which gear to use, Check the weather
 Important Gov Dataset - https://catalog.data.gov/dataset?q=&sort=metadata_created+desc
 
 This has APIs: https://free-apis.github.io/#/browse
+
+
+https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries
+
+https://api.worldbank.org/v2/country
+https://api.worldbank.org/v2/country/Z7?format=json

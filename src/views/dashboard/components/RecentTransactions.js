@@ -35,15 +35,15 @@ const RecentTransactions = () => {
           }}
         >
           <TimelineItem>
-            <TimelineOppositeContent>10:00 am</TimelineOppositeContent>
+            <TimelineOppositeContent>ISO 2 Code</TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot color="secondary" variant="outlined" />
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent>
-              <Typography fontWeight="600">City</Typography>{' '}
+              <Typography fontWeight="600">Country</Typography>{' '}
               <Link href="/" underline="none">
-                Postal Code
+                Capital City
               </Link>
             </TimelineContent>
           </TimelineItem>
