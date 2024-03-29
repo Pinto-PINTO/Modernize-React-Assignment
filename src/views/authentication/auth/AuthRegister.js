@@ -26,6 +26,7 @@ const AuthRegister = ({ title, subtitle, subtext }) => {
 
             await setDoc(doc(usersCollection, userId), {
                 username: username,
+                email: registerEmail,
             });
 
             setAlert(<Alert variant="outlined" severity="success">Registered User Successfully!</Alert>);
