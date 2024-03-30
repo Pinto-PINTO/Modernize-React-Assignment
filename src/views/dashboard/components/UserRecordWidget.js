@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
     Typography, Box,
@@ -7,14 +6,15 @@ import {
     TableCell,
     TableHead,
     TableRow,
-    Chip
 } from '@mui/material';
 import DashboardCard from '../../../components/shared/DashboardCard';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const UserRecordWidget = () => {
+    // State for storing user data
     const [userData, setUserData] = useState([]);
 
+    // Fetching user data from Firestore on component mount
     useEffect(() => {
         const fetchUserData = async () => {
             try {
@@ -96,4 +96,3 @@ const UserRecordWidget = () => {
 };
 
 export default UserRecordWidget;
-

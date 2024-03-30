@@ -15,9 +15,12 @@ import { Link, Typography } from '@mui/material';
 const RegionsWidget = () => {
   const [countryData, setCountryData] = useState([]);
 
+  // Effect hook to fetch country data on component mount
   useEffect(() => {
+    // Define an asynchronous function to fetch data
     const fetchData = async () => {
       try {
+        // Fetch data for multiple countries concurrently
         const responsePromises = [
           fetch('https://api.worldbank.org/v2/country/Z7?format=json'),
           fetch('https://api.worldbank.org/v2/country/ZQ?format=json'),
@@ -26,8 +29,11 @@ const RegionsWidget = () => {
           fetch('https://api.worldbank.org/v2/country/8S?format=json'),
         ];
 
+        // Wait for all responses
         const responses = await Promise.all(responsePromises);
+        // Extract JSON data from each response
         const dataPromises = responses.map((response) => response.json());
+        // Wait for all data promises to resolve
         const countryData = await Promise.all(dataPromises);
 
         setCountryData(countryData);
@@ -37,7 +43,7 @@ const RegionsWidget = () => {
     };
 
     fetchData();
-  }, []);
+  }, []); 
 
   return (
     <DashboardCard title="Regions and ISO Codes">
@@ -59,6 +65,7 @@ const RegionsWidget = () => {
             },
           }}
         >
+        {/* Mapping through country data to render timeline items */}
         {countryData.map((country, index) => {
           const iso2Code = country[1]?.[0]?.iso2Code;
           const name = country[1]?.[0]?.name;

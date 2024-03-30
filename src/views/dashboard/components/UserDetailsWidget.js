@@ -9,13 +9,15 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { auth } from '../../../firebase/Firebase'; 
 
 const UserDetailsWidget = () => {
+  // Accessing theme for color customization
   const theme = useTheme();
   const primary = theme.palette.primary.main;
-  const primarylight = '#ecf2ff';
   const successlight = theme.palette.success.light;
 
+  // State for storing user data
   const [userData, setUserData] = useState({ username: "", email: "" });
 
+  // Fetching user data from Firestore on component mount
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -42,6 +44,7 @@ const UserDetailsWidget = () => {
     return unsubscribe; 
   }, []);
 
+
   const optionscolumnchart = {
   };
 
@@ -50,7 +53,6 @@ const UserDetailsWidget = () => {
   return (
     <DashboardCard title="User Details">
       <Grid container spacing={3}>
-        {/* column */}
         <Grid item xs={7} sm={7}>
           <Typography variant="h3" fontWeight="700">
             @{userData.username}
@@ -63,6 +65,7 @@ const UserDetailsWidget = () => {
               {userData.email}
             </Typography>
           </Stack>
+          {/* Additional user details */}
           <Stack spacing={3} mt={5} direction="row">
             <Stack direction="row" spacing={1} alignItems="center">
               <Avatar
@@ -74,7 +77,6 @@ const UserDetailsWidget = () => {
             </Stack>
           </Stack>
         </Grid>
-        {/* column */}
         <Grid item xs={5} sm={5}>
           <Chart
             options={optionscolumnchart}

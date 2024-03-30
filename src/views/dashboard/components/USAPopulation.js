@@ -6,11 +6,14 @@ import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 
 const USAPopulation = () => {
+    // State for storing population data
     const [populationData, setPopulationData] = useState([]);
+    // Accessing theme for color customization
     const theme = useTheme();
     const primary = theme.palette.primary.main;
     const secondary = theme.palette.secondary.main;
 
+    // Fetching population data from DataUSA API on component mount
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`https://datausa.io/api/data?drilldowns=Nation&measures=Population`);
@@ -21,6 +24,7 @@ const USAPopulation = () => {
         fetchData();
     }, []);
 
+    // Configuration options for ApexCharts
     const options = {
         chart: {
             type: 'bar',
@@ -80,6 +84,7 @@ const USAPopulation = () => {
         },
     };
 
+    // Data series for ApexCharts
     const series = [
         {
             name: 'Population',
@@ -90,15 +95,16 @@ const USAPopulation = () => {
     return (
         <PageContainer title="USA Population" description="this is Sample page">
             <DashboardCard title="USA Population">
-            <Typography>
-                This is the <b>DataUSA API</b>, providing access to a wealth of statistical data regarding various aspects of the United States. <br></br>The endpoint, <a href="https://datausa.io/api/data?drilldowns=Nation&measures=Population">https://datausa.io/api/data?drilldowns=Nation&measures=Population</a>, specifically offers population data at a national level.
-                <br/><br/>
-                Users can retrieve aggregated population data, including total counts over time, demographic breakdowns, and related statistics. Valuable for researchers, policymakers, businesses, and anyone interested in U.S. population trends.
-                <br/><br/>
-                Accessible via simple HTTP requests, the data is machine-readable, facilitating integration into applications, analysis tools, and websites. A comprehensive and reliable resource for U.S. population data.
-            </Typography>
+                <Typography>
+                    This is the <b>DataUSA API</b>, providing access to a wealth of statistical data regarding various aspects of the United States. <br></br>The endpoint, <a href="https://datausa.io/api/data?drilldowns=Nation&measures=Population">https://datausa.io/api/data?drilldowns=Nation&measures=Population</a>, specifically offers population data at a national level.
+                    <br/><br/>
+                    Users can retrieve aggregated population data, including total counts over time, demographic breakdowns, and related statistics. Valuable for researchers, policymakers, businesses, and anyone interested in U.S. population trends.
+                    <br/><br/>
+                    Accessible via simple HTTP requests, the data is machine-readable, facilitating integration into applications, analysis tools, and websites. A comprehensive and reliable resource for U.S. population data.
+                </Typography>
 
                 <br></br>
+                {/* Rendering the ApexCharts component */}
                 <Chart
                     options={options}
                     series={series}

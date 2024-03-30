@@ -7,13 +7,14 @@ import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 
 const FakeStore = () => {
+  // Accessing theme object from MUI theme
   const theme = useTheme();
-  const [productRatings, setProductRatings] = useState([]);
-  const secondary = theme.palette.secondary.main;
-  const secondarylight = '#f5fcff';
-  const errorlight = '#fdede8';
+  const [productRatings, setProductRatings] = useState([]); // State for product ratings
+  const secondary = theme.palette.secondary.main; // Secondary color from theme
+  const secondarylight = '#f5fcff'; // Lighter shade of secondary color
 
   useEffect(() => {
+    // Fetch ratings from API on component mount
     const fetchRatings = async () => {
       try {
         const response = await fetch('https://fakestoreapi.com/products/');
@@ -25,9 +26,10 @@ const FakeStore = () => {
       }
     };
 
-    fetchRatings();
-  }, []);
+    fetchRatings(); // Invoke fetchRatings function
+  }, []); // Empty dependency array ensures effect runs only once on mount
 
+  // Options for column chart
   const optionscolumnchart = {
     chart: {
       type: 'bar',
@@ -64,6 +66,7 @@ const FakeStore = () => {
     },
   };
 
+  // Data series for column chart
   const seriescolumnchart = [
     {
       name: 'Ratings',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { useTheme } from '@mui/material/styles';
 import { Stack, Typography, Avatar, Fab } from '@mui/material';
@@ -48,15 +48,28 @@ const TinyText = styled(Typography)({
 const CalculatorWidget = () => {
   const theme = useTheme();
   const duration = 200; // seconds
-  const [position, setPosition] = useState(32);
-  const [paused, setPaused] = useState(false);
+  const [position, setPosition] = useState(0); // Initialize position state to 0
+  const [paused, setPaused] = useState(false); // State for playback status
 
+  // Function to format duration
   function formatDuration(value) {
     const minute = Math.floor(value / 60);
     const secondLeft = value - minute * 60;
     return `${minute}:${secondLeft < 10 ? `0${secondLeft}` : secondLeft}`;
   }
 
+  // Function to update position every second when not paused
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!paused && position < duration) {
+        setPosition(prevPosition => prevPosition + 1);
+      }
+    }, 1000); // Update every second
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, [paused, position, duration]);
+
+  // Colors for icons
   const mainIconColor = theme.palette.mode === 'dark' ? '#fff' : '#000';
   const lightIconColor =
     theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)';
@@ -94,6 +107,7 @@ const CalculatorWidget = () => {
                 </Typography>
               </Box>
             </Box>
+            {/* Slider for time indicator */}
             <Slider
               aria-label="time-indicator"
               size="small"
@@ -129,6 +143,7 @@ const CalculatorWidget = () => {
                 },
               }}
             />
+            {/* Time indicators */}
             <Box
               sx={{
                 display: 'flex',
@@ -140,6 +155,7 @@ const CalculatorWidget = () => {
               <TinyText>{formatDuration(position)}</TinyText>
               <TinyText>-{formatDuration(duration - position)}</TinyText>
             </Box>
+            {/* Playback controls */}
             <Box
               sx={{
                 display: 'flex',
@@ -165,6 +181,7 @@ const CalculatorWidget = () => {
                 <FastForwardRounded fontSize="large" htmlColor={mainIconColor} />
               </IconButton>
             </Box>
+            {/* Volume control */}
             <Stack spacing={2} direction="row" sx={{ mb: 1, px: 1 }} alignItems="center">
               <VolumeDownRounded htmlColor={lightIconColor} />
               <Slider
