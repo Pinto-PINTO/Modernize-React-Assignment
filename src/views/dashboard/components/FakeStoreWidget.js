@@ -5,7 +5,7 @@ import { Fab, Typography, Stack, Avatar } from '@mui/material';
 import { IconArrowDownRight, IconCurrencyDollar } from '@tabler/icons';
 import DashboardCard from '../../../components/shared/DashboardCard';
 
-const MonthlyEarnings = () => {
+const FakeStoreWidget = () => {
   const theme = useTheme();
   const [productRatings, setProductRatings] = useState([]);
   const secondary = theme.palette.secondary.main;
@@ -100,4 +100,4 @@ const MonthlyEarnings = () => {
   );
 };
 
-export default MonthlyEarnings;
+export default FakeStoreWidget;

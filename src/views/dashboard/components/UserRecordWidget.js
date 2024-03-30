@@ -12,7 +12,7 @@ import {
 import DashboardCard from '../../../components/shared/DashboardCard';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
-const ProductPerformance = () => {
+const UserRecordWidget = () => {
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
@@ -95,5 +95,5 @@ const ProductPerformance = () => {
     );
 };
 
-export default ProductPerformance;
+export default UserRecordWidget;
 

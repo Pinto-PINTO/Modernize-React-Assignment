@@ -8,7 +8,7 @@ import DashboardCard from '../../../components/shared/DashboardCard';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { auth } from '../../../firebase/Firebase'; 
 
-const YearlyBreakup = () => {
+const UserDetailsWidget = () => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
   const primarylight = '#ecf2ff';
@@ -88,4 +88,4 @@ const YearlyBreakup = () => {
   );
 };
 
-export default YearlyBreakup;
+export default UserDetailsWidget;

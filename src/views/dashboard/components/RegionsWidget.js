@@ -12,7 +12,7 @@ import {
 } from '@mui/lab';
 import { Link, Typography } from '@mui/material';
 
-const RecentTransactions = () => {
+const RegionsWidget = () => {
   const [countryData, setCountryData] = useState([]);
 
   useEffect(() => {
@@ -85,4 +85,4 @@ const RecentTransactions = () => {
   );
 };
 
-export default RecentTransactions;
+export default RegionsWidget;

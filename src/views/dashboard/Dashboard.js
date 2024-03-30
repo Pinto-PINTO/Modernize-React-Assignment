@@ -3,11 +3,11 @@ import { Grid, Box } from '@mui/material';
 import PageContainer from 'src/components/container/PageContainer';
 
 // components
-import SalesOverview from './components/SalesOverview';
-import YearlyBreakup from './components/YearlyBreakup';
-import RecentTransactions from './components/RecentTransactions';
-import ProductPerformance from './components/ProductPerformance';
-import MonthlyEarnings from './components/MonthlyEarnings';
+import PopulationChartWidget from './components/PopulationChartWidget';
+import UserDetailsWidget from './components/UserDetailsWidget';
+import RegionsWidget from './components/RegionsWidget';
+import UserRecordWidget from './components/UserRecordWidget';
+import FakeStoreWidget from './components/FakeStoreWidget';
 import CheckboxWidget from './components/CheckboxWidget';
 import MusicWidget from './components/MusicWidget';
 
@@ -18,23 +18,23 @@ const Dashboard = () => {
       <Box>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={8}>
-            <SalesOverview />
+            <PopulationChartWidget />
           </Grid>
           <Grid item xs={12} lg={4}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <YearlyBreakup />
+                <UserDetailsWidget />
               </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} lg={12}>
-            <MonthlyEarnings />
+            <FakeStoreWidget />
           </Grid>
           <Grid item xs={12} lg={4}>
-            <RecentTransactions />
+            <RegionsWidget />
           </Grid>
           <Grid item xs={12} lg={8}>
-            <ProductPerformance />
+            <UserRecordWidget />
           </Grid>
 
           <Grid item xs={12} lg={6}>

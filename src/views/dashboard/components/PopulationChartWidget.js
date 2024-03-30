@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import DashboardCard from '../../../components/shared/DashboardCard';
 import Chart from 'react-apexcharts';
 
-const PopulationChart = () => {
+const PopulationChartWidget = () => {
     const [populationData, setPopulationData] = useState([]);
     const theme = useTheme();
     const primary = theme.palette.primary.main;
@@ -98,4 +98,4 @@ const PopulationChart = () => {
     );
 };
 
-export default PopulationChart;
+export default PopulationChartWidget;
